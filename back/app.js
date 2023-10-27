@@ -12,19 +12,18 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "123456", // contraseña se mysql en la laptop
-    database: "prueba"
+    password: "123456",
+    database: "login"
 
 });
 
 app.post('/login', (req, res) =>{
-    const sql = 'SELECT * FROM prueba_1 WHERE email = ? AND clave = ?';
+    const sql = 'SELECT * FROM login_table WHERE Usuario = ? AND Contraseña = ?';
     
     db.query(sql, [req.body.email, req.body.password], (err, data) =>{
         if(err) return res.json("Error de conexión de la BD");
         if(data.length > 0) {
-            return res.json("Logueo exitoso")
-            
+            return res.json("Logueo exitoso")      
         }
         else {
             return res.json("Error en usuario y/o contraseña")
