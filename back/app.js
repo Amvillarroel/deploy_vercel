@@ -17,13 +17,13 @@ const db = mysql.createConnection({
 
 });
 
-app.post('/login', (req, res) =>{
+app.post('/', (req, res) =>{
     const sql = 'SELECT * FROM login_table WHERE Usuario = ? AND Contraseña = ?';
     
     db.query(sql, [req.body.email, req.body.password], (err, data) =>{
         if(err) return res.json("Error de conexión de la BD");
         if(data.length > 0) {
-            return res.json("Logueo exitoso")      
+            return res.json("Logueo exitoso")
         }
         else {
             return res.json("Error en usuario y/o contraseña")
