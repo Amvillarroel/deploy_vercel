@@ -11,6 +11,7 @@ const getMovies = async () => {
         language: 'es-ES' // Puedes cambiar el idioma según tus preferencias
         }
     })
+   
     return response;
     // .then(response => {
     //     const movies = response.data.results;

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import {getMovies} from '../services/getMovies';
+import { getMovieAdapter } from '../adapters/getMovieAdapter';
 
 const Home = () => {
     const [data, setData] = useState([]);
     const fetchData = async () => {
         try {
             const popular_movies = await getMovies();
-            setData(popular_movies.data.results);
+            const movieAdapted = getMovieAdapter(popular_movies)
+            setData(movieAdapted);
+           
         } catch (error) {
             console.error(error);
         }
