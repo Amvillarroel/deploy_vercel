@@ -3,7 +3,6 @@ const path = require('path');
 const mysql = require('mysql2');
 const cors = require('cors');
 
-
 const app = express();
 app.use(express.json());
 
@@ -11,10 +10,10 @@ app.use(cors());
 
 const db = mysql.createConnection({
     host: "localhost",
+    port: "3306",
     user: "root",
     password: "123456",
     database: "login"
-
 });
 
 app.post('/', (req, res) =>{
