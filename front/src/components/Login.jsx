@@ -19,7 +19,7 @@ function Login () {
         .then(res => {
             console.log(res);
             if (res.data === "Logueo exitoso") {
-              navigate('/home');
+                navigate('/home');
             }}
         )
         //respuesta del back cuando hay error en credenciales

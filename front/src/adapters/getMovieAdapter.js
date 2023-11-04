@@ -1,12 +1,8 @@
-function getMovieAdapter(responseMovie) {
-    const { results } = responseMovie.data;
-  
-    const adaptedData = results.map((item) => {
-      const { id, title, poster_path, release_date, overview } = item;
-      return { id, title, poster_path, release_date, overview };
-    });
-  
-    return adaptedData; // Devuelve el arreglo directamente, sin envolverlo en un objeto
-  }
-  
-  export { getMovieAdapter }
+function getMovieAdapter(response) {
+  const adaptedData = response.map((item) => {
+    const { id, title: title, poster_path: poster, release_date: date } = item;
+    return { id, title, poster, date };
+  });
+  return adaptedData;
+};
+export { getMovieAdapter };

@@ -19,7 +19,6 @@ const Header = () => {
 
                 <form action="">
                     <input type="text" placeholder='Titulos, generos'/>
-                    <button>Cerrar sesión</button>
                 </form>
             </nav>
         </header>
