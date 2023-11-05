@@ -14,16 +14,24 @@ function Login () {
         const email = emailInput.current.value;
         const password = passwordInput.current.value;
         //envío de los datos al back para validar el email y el password y determinar si el logueo es exitoso o no
-        axios.post('http://localhost:3000/', {email, password})
+        axios.post('http://localhost:3000/login', {email, password})
         //respuesta exitosa obtenida del back sobre el email y el password enviado
-        .then(res => {
+        .then(async res => {
             console.log(res);
-            if (res.data === "Logueo exitoso") {
-                navigate('/home');
+            if (res.data.token) {
+                // Dentro del componente Login, después de recibir el token
+                const token = res.data.token
+                 // Usa await para asegurarte de que la operación de almacenamiento en localStorage se complete antes de continuar
+                await new Promise(resolve => {
+                localStorage.setItem('token', token);
+                resolve();
+                });
+                
+                navigate('/login');
             }}
         )
         //respuesta del back cuando hay error en credenciales
-        .catch(err => console.log(res));
+        .catch(err => console.log('Error en usuario y/o contraseña desde el front'));
 
         emailInput.current.value = '';
         passwordInput.current.value = '';
