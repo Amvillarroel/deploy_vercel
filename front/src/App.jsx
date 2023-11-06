@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
 import Details from './components/Details';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+
 
 function App() {
   
-  const [authenticated, setAuthenticated] = useState(false);
-  
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    console.log('este es el token ' + token)  
-    if (token) {
-      // Aquí puedes verificar si el token es válido utilizando jwt.verify
-      // Si el token es válido, establece el estado 'authenticated' en true
-      // De lo contrario, déjalo como false
-      // Puedes utilizar un try-catch para manejar errores de verificación del token
-      setAuthenticated(true);      
-      <Navigate to="/home" replace />;
-    }
-  }, []);
-  
-  const auntenticado = authenticated
-  console.log('este es el estado del autenticado después de useEffect ' + auntenticado)
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
+
+function AppContent() {
+  const { authenticated } = useAuth();
 
   return (
     <>

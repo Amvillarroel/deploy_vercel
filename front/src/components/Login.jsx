@@ -2,11 +2,13 @@ import React, { useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext'
 
 function Login () {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
     const navigate = useNavigate();
+    const { login } = useAuth();
 
    //Enviar los datos al back para validar el usuario y la contraseña
     function handleSubmit (e) {
@@ -27,9 +29,9 @@ function Login () {
                 resolve();
                 });
                 
-                navigate('/login');
-            }}
-        )
+                login();
+                navigate('/home');
+            }})
         //respuesta del back cuando hay error en credenciales
         .catch(err => console.log('Error en usuario y/o contraseña desde el front'));
 
