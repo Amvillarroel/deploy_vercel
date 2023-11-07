@@ -2,13 +2,19 @@ import React, { useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../contexts/AuthContext.jsx'
 
 function Login () {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
     const navigate = useNavigate();
     const { login } = useAuth();
+
+    //mantener sesión iniciada si hay un token en el local storage
+    const localStorageToken = localStorage.getItem('token')
+    if(localStorageToken) {
+        login();
+    }
 
    //Enviar los datos al back para validar el usuario y la contraseña
     function handleSubmit (e) {
@@ -18,17 +24,14 @@ function Login () {
         //envío de los datos al back para validar el email y el password y determinar si el logueo es exitoso o no
         axios.post('http://localhost:3000/login', {email, password})
         //respuesta exitosa obtenida del back sobre el email y el password enviado
-        .then(async res => {
+            .then(res => {
             console.log(res);
             if (res.data.token) {
                 // Dentro del componente Login, después de recibir el token
                 const token = res.data.token
-                 // Usa await para asegurarte de que la operación de almacenamiento en localStorage se complete antes de continuar
-                await new Promise(resolve => {
-                localStorage.setItem('token', token);
-                resolve();
-                });
-                
+                //se guarda el token en el local storage
+                    localStorage.setItem('token', token);
+
                 login();
                 navigate('/home');
             }})

@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
 import Details from './components/Details';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider, useAuth } from './contexts/AuthContext.jsx';
 
 
 function App() {
