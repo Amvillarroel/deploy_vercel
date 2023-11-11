@@ -81,7 +81,7 @@ const Home = () => {
                             renderCard={(card) => (
                                 <Card 
                                     key={card.id}
-                                    title={card.tile}
+                                    title={card.title}
                                     poster_path={card.poster}
                                     date={card.date}
                                 />
