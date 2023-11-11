@@ -25,7 +25,6 @@ function Login () {
         axios.post('http://localhost:3000/login', {email, password})
         //respuesta exitosa obtenida del back sobre el email y el password enviado
             .then(res => {
-            console.log(res);
             if (res.data.token) {
                 // Dentro del componente Login, después de recibir el token
                 const token = res.data.token

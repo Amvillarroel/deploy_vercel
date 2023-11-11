@@ -4,7 +4,9 @@ const useMultifetch = (services = [
     {
         name: '',
         request: async () => {},
-        adapter: (data) => data
+        adapter: (data) => data,
+        endpoint: '',
+        endpoint_params: {}
     }
 ]) => {
     const [list, setList] = useState();
@@ -19,7 +21,7 @@ const useMultifetch = (services = [
                 const promises = await Promise.all(services.map(async (service) => {
                     return {
                         name: service.name,
-                        results: getAdapter(service.adapter)((await service.request()).data.results)
+                        results: getAdapter(service.adapter)((await service.request(service.endpoint, service.endpoint_params)))
                     };
                 }));
                 setList(promises);

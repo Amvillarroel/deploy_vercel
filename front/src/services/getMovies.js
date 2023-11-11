@@ -1,18 +1,8 @@
-import axios from 'axios';
+import { TMDB_API } from '../remote/TMDB_API';
 
-const apiKey = import.meta.env.VITE_API_KEY;
-const baseUrl = import.meta.env.VITE_API_BASE_URL;
-const endpoint = import.meta.env.VITE_API_MOVIES_ENDPOINT;
-
-
-const getMovies = async () => {
-    const response = await axios.get(`${baseUrl}${endpoint}`, {
-        params: {
-        api_key: apiKey,
-        language: 'es-ES'
-        }
-    })
-    return response;
+const getMovies = async (endpoint, params) => {
+    const { data: {results }} = await TMDB_API.get(endpoint, params)
+    return results;
 };
 
 export { getMovies };
