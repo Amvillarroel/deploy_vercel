@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -8,14 +8,37 @@ function Login () {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { login, logout } = useAuth();
 
+    useEffect (()=>{
     //mantener sesión iniciada si hay un token en el local storage
-    const localStorageToken = localStorage.getItem('token')
-    if(localStorageToken) {
-        login();
-    }
-
+    const localStorageToken = localStorage.getItem('token');
+    if (!localStorageToken) {console.log('No hay token en el local storage')}
+    
+    else {
+    axios.post('http://localhost:3000/islogged', {localStorageToken})
+    .then(res => {
+        if (res.data.success) {
+            login();
+            navigate('/home');
+        }     
+    })
+        .catch(err => {
+            if (err.response.data.message === 'Token expirado'){
+                console.log('El token ha expirado')
+            }
+            else {
+                console.log('Token no válido');
+            }
+            
+            localStorage.clear();
+            logout();
+            navigate('/login')
+    });
+        } //cierre del else
+    }, []);
+      
+    
    //Enviar los datos al back para validar el usuario y la contraseña
     function handleSubmit (e) {
         e.preventDefault();
