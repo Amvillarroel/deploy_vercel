@@ -22,9 +22,12 @@ const useMultifetch = (services = [
                     return {
                         name: service.name,
                         results: getAdapter(service.adapter)((await service.request(service.endpoint, service.endpoint_params)))
+                        
                     };
+                
                 }));
                 setList(promises);
+                console.log('Esto es el resultado de la constante promises ' + list)
             } catch (error) {
                 console.error(error);
             } finally {

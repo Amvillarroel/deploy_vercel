@@ -26,7 +26,7 @@ app.post('/login', (req, res) =>{
         if(err)  return res.json("Error de conexión de la BD");
         if(data.length > 0) {
             // Las credenciales son correctas, generamos un token JWT
-            const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '5m' });
+            const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '30m' });
             return res.status(200).json({ token });
         }
         else {
