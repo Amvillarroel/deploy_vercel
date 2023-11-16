@@ -70,11 +70,11 @@ function Login () {
                 <form onSubmit={handleSubmit}>
                     <div className='mb-3'>
                         <label htmlFor='email'>Email</label>
-                        <input type='email' placeholder='Ingrese su email' className='form-control' ref={emailInput}></input>
+                        <input type='email' defaultValue='amvillarroel@gmail.com' placeholder='Ingrese su email' className='form-control' ref={emailInput}></input>
                     </div>     
                     <div className='mb-3'>
                         <label htmlFor='password'>Password</label>
-                        <input type='password' placeholder='Ingrese su contraseña' className='form-control' ref={passwordInput}></input>
+                        <input type='password' defaultValue='123456' placeholder='Ingrese su contraseña' className='form-control' ref={passwordInput}></input>
                     </div>
                     <button className='btn btn-success'>Login</button>
                 </form>           
