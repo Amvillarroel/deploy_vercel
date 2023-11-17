@@ -23,7 +23,7 @@ const dbConnection = mysql.createPool({
 
 
 app.post('/login', (req, res) =>{
-    const sql = 'SELECT * FROM login_table WHERE Usuario = ? AND Contrasena = ?';
+    const sql = 'SELECT * FROM login_table WHERE Usuario = ? AND Contraseña = ?';
     
     dbConnection.query(sql, [req.body.email, req.body.password], (err, data) =>{
         if(err)  return res.json("Error de conexión de la BD");
