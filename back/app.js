@@ -3,8 +3,6 @@ const path = require('path');
 const mysql = require('mysql2');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-//const dbConnection = require('./database')
-const PORT =require('./config')
 
 require('dotenv').config();
 
@@ -62,5 +60,5 @@ app.post('/islogged', (req, res) => {
 
 });
 
-app.listen(PORT, () =>{console.log('Server listening port ', PORT);
+app.listen(3000, () =>{console.log('Server listening port ', 3000);
 });
