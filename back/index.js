@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 const app = express();
+const port = process.env.PORT || 3000
 app.use(express.json());
-
 app.use(cors());
 
 mongoose.connect(process.env.URL_DB, {useNewUrlParser: true})
@@ -22,8 +22,8 @@ const usersModel = mongoose.model("users", usersSchema)
 
 //Crear un usuario y contraseña
 /*const user = new usersModel({
-    usuario:'amnel',
-    clave:'123456'
+    usuario:'carlos@correo.com',
+    clave:'123456789'
 })
 
 user.save();*/
@@ -44,24 +44,6 @@ app.get('/login', (req, res) => {
     });
 });
 
-
-/*app.post('/login', (req, res) =>{
-    const sql = 'SELECT * FROM login_table WHERE Usuario = ? AND Contraseña = ?';
-    
-    dbConnection.query(sql, [req.body.email, req.body.password], (err, data) =>{
-        if(err)  return res.json("Error de conexión de la BD");
-        if(data.length > 0) {
-            // Las credenciales son correctas, generamos un token JWT
-            const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '30m' });
-            return res.status(200).json({ token });
-        }
-        else {
-            return res.json("Error en usuario y/o contraseña desde el back");
-        }
-    })
-})*/
-
-//Verificar si el token en el local storage es válido para mantener la sesión
 app.post('/islogged', (req, res) => {
     const token = req.body.localStorageToken
     //Si no hay token en el local storage devuelve acceso no autorizado
@@ -85,8 +67,7 @@ app.post('/islogged', (req, res) => {
 
 });
 
-
 app.get('/favicon.ico', (req, res) => res.status(204));//para controlar error en petición get de favicon 
                                                         //que envía la consulta de la base de datos
-app.listen(3000, () =>{console.log('Server listening port ', 3000);
+app.listen(port, () =>{console.log('Server listening port ', port);
 });
