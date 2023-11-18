@@ -1,26 +1,51 @@
-const express = require('express');
-const path = require('path');
-const mysql = require('mysql2');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-
 require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
 
 app.use(cors());
 
-const dbConnection = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
+mongoose.connect(process.env.URL_DB, {useNewUrlParser: true})
+
+//se crea el schema de la BD
+const usersSchema = {
+    usuario: String,
+    clave: String,
+}
+
+//se crea el modelo de la BD
+const usersModel = mongoose.model("users", usersSchema)
+
+//Crear un usuario y contraseña
+/*const user = new usersModel({
+    usuario:'amnel',
+    clave:'123456'
+})
+
+user.save();*/
+
+app.get('/login', (req, res) => {
+    const { email, password } = req.query; // Obtener datos de la consulta
+
+    usersModel.find({ usuario: email, clave: password }).then((users) => {
+        if (users.length > 0) {
+            const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '30m' });
+            res.status(200).json({ token });
+        } else {
+            res.status(401).json({ message: 'Credenciales incorrectas' });
+        }
+    }).catch(error => {
+        console.error(error);
+        res.status(500).json({ error: 'Error al buscar usuarios' });
+    });
 });
 
 
-app.post('/login', (req, res) =>{
+/*app.post('/login', (req, res) =>{
     const sql = 'SELECT * FROM login_table WHERE Usuario = ? AND Contraseña = ?';
     
     dbConnection.query(sql, [req.body.email, req.body.password], (err, data) =>{
@@ -34,7 +59,7 @@ app.post('/login', (req, res) =>{
             return res.json("Error en usuario y/o contraseña desde el back");
         }
     })
-})
+})*/
 
 //Verificar si el token en el local storage es válido para mantener la sesión
 app.post('/islogged', (req, res) => {
@@ -60,5 +85,8 @@ app.post('/islogged', (req, res) => {
 
 });
 
+
+app.get('/favicon.ico', (req, res) => res.status(204));//para controlar error en petición get de favicon 
+                                                        //que envía la consulta de la base de datos
 app.listen(3000, () =>{console.log('Server listening port ', 3000);
 });
