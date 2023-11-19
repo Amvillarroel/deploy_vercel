@@ -1,7 +1,6 @@
 {
-    "version":2,
     "builds": [{
-        "src": "*.js",
+        "src": "./Index.jsx",
         "use": "@vercel/node"
     }],
     "routes":[{

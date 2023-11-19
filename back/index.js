@@ -7,9 +7,15 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const port = process.env.PORT || 3000
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin: [""],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
-mongoose.connect(process.env.URL_DB, {useNewUrlParser: true})
+mongoose.connect("mongodb+srv://amvillarroel:amnel123@cluster0.er2efnj.mongodb.net/LOGIN", {useNewUrlParser: true})
 
 //se crea el schema de la BD
 const usersSchema = {
