@@ -34,6 +34,10 @@ const usersModel = mongoose.model("users", usersSchema)
 
 user.save();*/
 
+app.get('/', (req, res)=>{
+    res.json("hello word")
+})
+
 app.get('/login', (req, res) => {
     const { email, password } = req.query; // Obtener datos de la consulta
 
