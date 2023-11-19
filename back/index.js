@@ -35,7 +35,19 @@ const usersModel = mongoose.model("users", usersSchema)
 user.save();*/
 
 app.get('/', (req, res)=>{
-    res.send("hello word")
+    const htmlResponse = `
+    <html>
+        <head>
+            <title>
+            Node JS y Express en Vercel
+            </title>
+        </head>
+        <body>
+        <h1>Soy un proyecto de back en Vercel</h1>
+        </body>
+    </html>  
+    `;
+    res.send(htmlResponse)
 })
 
 app.get('/login', (req, res) => {
