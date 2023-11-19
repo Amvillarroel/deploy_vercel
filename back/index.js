@@ -35,7 +35,7 @@ const usersModel = mongoose.model("users", usersSchema)
 user.save();*/
 
 app.get('/', (req, res)=>{
-    res.json("hello word")
+    res.send("hello word")
 })
 
 app.get('/login', (req, res) => {
