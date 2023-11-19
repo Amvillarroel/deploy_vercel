@@ -8,11 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors(
-    {
-        origin: ["https://deploy-vercel-frontend-nine.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
+    
 ));
 
 mongoose.connect("mongodb+srv://amvillarroel:amnel123@cluster0.er2efnj.mongodb.net/LOGIN", {useNewUrlParser: true})
