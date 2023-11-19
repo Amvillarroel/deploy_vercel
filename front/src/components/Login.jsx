@@ -44,7 +44,7 @@ function Login () {
     const email = emailInput.current.value;
     const password = passwordInput.current.value;
 
-    axios.get('https://deploy-vercel-api.vercel.app/login', {
+    axios.get('https://deploy-vercel-api.vercel.app//login', {
         params: {
             email: email,
             password: password
