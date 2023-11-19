@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors(
     {
-        origin: ["https://deploy-vercel-frontend-git-main-amnels-projects.vercel.app/"],
+        origin: ["https://deploy-vercel-frontend-nine.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true
     }
