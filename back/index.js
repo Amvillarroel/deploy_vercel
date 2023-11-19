@@ -15,7 +15,7 @@ app.use(cors(
     }
 ));
 
-mongoose.connect("mongodb+srv://amvillarroel:amnel123@cluster0.er2efnj.mongodb.net/LOGIN", {useNewUrlParser: true})
+mongoose.connect("mongodb+srv://amvillarroel:amnel123@cluster0.er2efnj.mongodb.net/LOGIN?retryWrites=true&w=majority", {useNewUrlParser: true})
 
 //se crea el schema de la BD
 const usersSchema = {
