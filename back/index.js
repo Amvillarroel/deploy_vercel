@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors(
     {
+        origin: ["https://deploy-vercel-frontend-amnels-projects.vercel.app/login"],
         methods: ["POST", "GET"],
         credentials: true
     }
