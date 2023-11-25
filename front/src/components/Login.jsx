@@ -33,7 +33,7 @@ function Login() {
 
                     localStorage.clear();
                     logout();
-                    navigate('/login');
+                    navigate('/');
                 });
         } //cierre del else
     }, []);
