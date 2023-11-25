@@ -19,7 +19,7 @@ mongoose.connect("mongodb+srv://amvillarroel:amnel123@cluster0.er2efnj.mongodb.n
 
 //se crea el schema de la BD
 const usersSchema = {
-    usuario: String,
+    usuario: {type: String, unique: true},
     clave: String,
 }
 
@@ -27,12 +27,31 @@ const usersSchema = {
 const usersModel = mongoose.model("users", usersSchema)
 
 //Crear un usuario y contraseña
-/*const user = new usersModel({
-    usuario:'carlos@correo.com',
-    clave:'123456789'
-})
+app.get('/register', async (req, res) => {
+    const { email, password } = req.query;
+    if(email!="" || password != ""){
+    try {
+        const newUser = new usersModel({ usuario: email, clave: password });
+        await newUser.save();
+        res.status(200).json({ success: true });
+    } catch (error) {
+        if (error.code === 11000) {
+            // Código 11000 indica un error de duplicación (clave única)
+            res.status(500).json({ message: 'El usuario ya existe en la BD' });
+        } else {
+            console.error(error);
+            res.status(500).json({ error: true });
+        }
+    }}
+});
 
-user.save();*/
+
+    /*const user = new usersModel({ usuario:{ email }, clave:{ password }})
+    .then(user.save())
+    .cath(error => {
+        console.error(error);
+        res.status(500).json({ error: 'Error al crear el usuarios' });
+    })*/
 
 app.get('/', (req, res)=>{
     const htmlResponse = `
@@ -53,14 +72,16 @@ app.get('/', (req, res)=>{
 app.get('/login', (req, res) => {
     const { email, password } = req.query; // Obtener datos de la consulta
 
-    usersModel.find({ usuario: email, clave: password }).then((users) => {
+    usersModel.find({ usuario: email, clave: password })
+    .then((users) => {
         if (users.length > 0) {
             const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '30m' });
             res.status(200).json({ token });
         } else {
             res.status(401).json({ message: 'Credenciales incorrectas' });
         }
-    }).catch(error => {
+    })
+    .catch(error => {
         console.error(error);
         res.status(500).json({ error: 'Error al buscar usuarios' });
     });

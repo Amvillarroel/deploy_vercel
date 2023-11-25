@@ -27,7 +27,6 @@ const useMultifetch = (services = [
                 
                 }));
                 setList(promises);
-                console.log('Esto es el resultado de la constante promises ' + list)
             } catch (error) {
                 console.error(error);
             } finally {

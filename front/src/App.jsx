@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Details from './components/Details';
 import { AuthProvider, useAuth } from './contexts/AuthContext.jsx';
+import Register from './components/Register.jsx';
 
 function App() {
   
@@ -23,7 +24,8 @@ function AppContent() {
       <Header />    
       <Router>
         <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/register" replace />} />
+          <Route path="/register" element = {<Register />}/>
           <Route path="/login" element={authenticated ? <Navigate to="/home" replace/> : <Login />} />
           <Route exact path="/home" element={authenticated ? <Home /> : <Navigate to="/login" replace />}/>
           <Route exact path="/details" element={authenticated ? <Details /> : <Navigate to="/login" replace />}/>
