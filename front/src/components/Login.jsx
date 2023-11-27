@@ -17,7 +17,7 @@ function Login() {
             console.log('No hay token en el local storage');
         } else {
             axios
-                .post('https://deploy-vercel-api.vercel.app/islogged', { localStorageToken })
+                .post(`${import.meta.env.VITE_BACK}/islogged`, { localStorageToken })
                 .then((res) => {
                     if (res.data.success) {
                         login();
@@ -45,7 +45,7 @@ function Login() {
         const password = passwordInput.current.value;
 
         axios
-            .get('https://deploy-vercel-api.vercel.app/login', {
+            .get(`${import.meta.env.VITE_BACK}/login`, {
                 params: {
                     email: email,
                     password: password,

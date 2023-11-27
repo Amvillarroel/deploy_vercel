@@ -15,7 +15,7 @@ function Register() {
         const password = passwordInput.current.value;
 
         axios
-            .get('https://deploy-vercel-api.vercel.app/register', {
+            .get(`${import.meta.env.VITE_BACK}/register`, {
                 params: {
                     email: email,
                     password: password,

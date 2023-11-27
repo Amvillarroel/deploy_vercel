@@ -9,13 +9,13 @@ const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors(
     {
-        origin: ["https://deploy-vercel-frontend-beta.vercel.app"],
+        origin: [process.env.CORS_FRONT],
         methods: ["POST", "GET"],
         credentials: true
     }
 ));
 
-mongoose.connect("mongodb+srv://amvillarroel:amnel123@cluster0.er2efnj.mongodb.net/LOGIN?retryWrites=true&w=majority", {useNewUrlParser: true})
+mongoose.connect(process.env.URL_DB, {useNewUrlParser: true})
 
 //se crea el schema de la BD
 const usersSchema = {
