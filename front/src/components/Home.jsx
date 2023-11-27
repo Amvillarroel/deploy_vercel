@@ -12,10 +12,10 @@ import { Slider } from './Slider/Slider';
 const Home = () => {
     const { list, isLoading, error } = useMultifetch([
         {
-            name: 'Proximas Peliculas',
+            name: 'Proximas Populares (probando cambios en vercel)',
             request: getMovies,
             adapter: getMovieAdapter,
-            endpoint: TMDB_PATHS.movies.upcoming
+            endpoint: TMDB_PATHS.movies.popular
         },
         {
             name: 'Series Populares',
