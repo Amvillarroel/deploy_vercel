@@ -20,12 +20,12 @@ function App() {
 
 function AppContent() {
   const { authenticated } = useAuth();
-
+  
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/register" replace />} />
           <Route path="/register" element = {<Register />}/>
           <Route path="/login" element={authenticated ? <Navigate to="/home" replace/> : <Login />} />
           <Route path="/home" element={authenticated ? <><Layout></Layout><Home></Home></> : <Navigate to="/" replace />}/>
