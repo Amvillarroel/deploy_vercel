@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({children}) => {
     //función con lógica para cierre de sesión 
     const { logout } = useAuth();
     const navigate = useNavigate();
@@ -15,7 +15,8 @@ const Header = () => {
     }
 
     return (
-        <header className='header' >
+        <>
+            <header className='header' >
             <nav className='navbar' >
                 <div className='nav'>
                     <picture>
@@ -57,7 +58,9 @@ const Header = () => {
                     </Dropdown>
                 </div>
             </nav>
-        </header>
+            </header>
+            {children}
+        </>
     )
 }
 

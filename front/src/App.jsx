@@ -6,7 +6,8 @@ import Home from './components/Home';
 import Details from './components/Details';
 import { AuthProvider, useAuth } from './contexts/AuthContext.jsx';
 import Register from './components/Register.jsx';
-import { Layout } from './components/layout/layout.jsx';
+import { Layout } from './components/Layout/Layout.jsx';
+
 
 function App() {
   
@@ -27,13 +28,7 @@ function AppContent() {
           <Route path="/" element={<Navigate to="/register" replace />} />
           <Route path="/register" element = {<Register />}/>
           <Route path="/login" element={authenticated ? <Navigate to="/home" replace/> : <Login />} />
-          <Route exact path="/home" element={authenticated 
-            ? (
-              <Layout>
-                <Home />
-              </Layout>
-            ) 
-            : <Navigate to="/" replace />}/>
+          <Route exact path="/home" element={authenticated ? <Layout><Home /></Layout> : <Navigate to="/" replace />}/>
           <Route exact path="/details" element={authenticated ? <Details /> : <Navigate to="/" replace />}/>
         </Routes>
       </Router>

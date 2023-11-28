@@ -8,6 +8,7 @@ import { getGenresMovies } from '../services/getGenresMovies';
 import { TMDB_PATHS } from '../remote/TMDB_API';
 import { List } from './List/List';
 import { Slider } from './Slider/Slider';
+import { Layout } from './Layout/Layout';
 
 const Home = () => {
     const { list, isLoading, error } = useMultifetch([
@@ -60,27 +61,27 @@ const Home = () => {
     }, [])
     return (
         <>
-            {error ?? (<h1>{error}</h1>)}
-            {isLoading ? 
-            (<h1>Cargando....</h1>) :
-            (<>
-                <ul style={{padding:'16px 32px', listStyle:'none', display:'flex', gap:'8px', overflow:'scroll'}}>
-                    {genres?.map(genre => (
-                        <li key={genre.id}>
-                            <button style={{borderStyle:'none', borderRadius:'8px', padding:'4px 8px'}}>{genre.name}</button>
-                        </li>
-                    ))}
-                </ul>
-                <List 
-                    list={list}
-                    renderList={(carousel, index) => (
-                        <Slider 
-                            key={`${carousel.name}_${index}`}
-                            carousel={carousel}
-                        />
-                    )}
-                />
-            </>)}
+                {error ?? (<h1>{error}</h1>)}
+                {isLoading ? 
+                (<h1>Cargando....</h1>) :
+                (<>
+                    <ul style={{padding:'16px 32px', listStyle:'none', display:'flex', gap:'8px', overflow:'scroll'}}>
+                        {genres?.map(genre => (
+                            <li key={genre.id}>
+                                <button style={{borderStyle:'none', borderRadius:'8px', padding:'4px 8px'}}>{genre.name}</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <List 
+                        list={list}
+                        renderList={(carousel, index) => (
+                            <Slider 
+                                key={`${carousel.name}_${index}`}
+                                carousel={carousel}
+                            />
+                        )}
+                    />
+                </>)}
         </>
     );
 };
