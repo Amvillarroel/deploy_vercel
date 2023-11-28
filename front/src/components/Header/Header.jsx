@@ -2,10 +2,12 @@ import React from 'react';
 import { useAuth } from '../../contexts/AuthContext.jsx';
 import Dropdown from 'react-bootstrap/Dropdown';
 import './header.css';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     //función con lógica para cierre de sesión 
     const { logout } = useAuth();
+    const navigate = useNavigate();
     function logOut() {
     localStorage.clear();
     logout();
@@ -37,7 +39,7 @@ const Header = () => {
                     </ul>
                 </div>
 
-                <form className='form' action="">
+                <div className='form' >
                     <input className='form__search' type="text" placeholder='Titulos, generos'/>
                     
                     <Dropdown >
@@ -53,7 +55,7 @@ const Header = () => {
                             </Dropdown.ItemText>
                         </Dropdown.Menu>
                     </Dropdown>
-                </form>
+                </div>
             </nav>
         </header>
     )
