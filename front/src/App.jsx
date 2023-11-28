@@ -25,10 +25,10 @@ function AppContent() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/register" replace />} />
           <Route path="/register" element = {<Register />}/>
           <Route path="/login" element={authenticated ? <Navigate to="/home" replace/> : <Login />} />
-          <Route exact path="/home" element={authenticated ? <Layout><Home /></Layout> : <Navigate to="/" replace />}/>
+          <Route exact path="/home" element={authenticated ? <><Layout></Layout><Home></Home></> : <Navigate to="/" replace />}/>
           <Route exact path="/details" element={authenticated ? <Details /> : <Navigate to="/" replace />}/>
         </Routes>
       </Router>
