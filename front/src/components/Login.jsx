@@ -67,7 +67,7 @@ function Login() {
     }
 
     return (
-        <div style={{backgroundImage:'url("./public/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
+        <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
             <div style={{borderRadius:'16px'}} className='p-3 bg-dark w-30s'>
                 <form >
                     <div className='mb-3'>

@@ -35,7 +35,7 @@ function Register() {
     }
 
     return (
-        <div style={{backgroundImage:'url("./public/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
+        <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
             <div style={{borderRadius:'16px'}} className='p-5 bg-dark w-30'>
                 <form onSubmit={handleRegister}>
                     <div className='mb-3'>
