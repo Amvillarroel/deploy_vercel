@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import {Button, Link as linkNextUI, Input} from "@nextui-org/react";
 
 function Login() {
     const emailInput = useRef(null);
@@ -66,21 +67,21 @@ function Login() {
     }
 
     return (
-        <div className='d-flex vh-100 justify-content-center align-items-center bg-primary'>
-            <div className='p-3 bg-white w-30'>
-                <form onSubmit={handleSubmit}>
+        <div style={{backgroundImage:'url("./public/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
+            <div style={{borderRadius:'16px'}} className='p-3 bg-dark w-30s'>
+                <form >
                     <div className='mb-3'>
-                        <label htmlFor='email'>Email</label>
-                        <input type='email' placeholder='Ingrese su email' className='form-control' ref={emailInput}></input>
+                        <Input type="email" variant="bordered" label="Email" ref={emailInput} />
                     </div>
                     <div className='mb-3'>
-                        <label htmlFor='password'>Password</label>
-                        <input type='password' placeholder='Ingrese su contraseña' className='form-control' ref={passwordInput}></input>
+                        <Input type="password" variant="bordered" label="Password" ref={passwordInput} />
                     </div>
-                    <button className='btn btn-success'>Login</button>
-                    <Link to='/register' className='btn btn-primary mx-2'>
-                        Go to Register
-                    </Link>
+                    <div style={{display:'flex', gap:'8px'}}>
+                        <Button onClick={handleSubmit} color="success">Login</Button>
+                        <Link to='/register'>
+                            <Button color="default">Go to Register</Button>
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>

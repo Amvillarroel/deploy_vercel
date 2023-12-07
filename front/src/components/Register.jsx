@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { Button, Input } from '@nextui-org/react';
 
 function Register() {
     const emailInput = useRef(null);
@@ -34,24 +35,21 @@ function Register() {
     }
 
     return (
-        <div className='d-flex vh-100 justify-content-center align-items-center bg-primary'>
-            <div className='p-5 bg-white w-30'>
+        <div style={{backgroundImage:'url("./public/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
+            <div style={{borderRadius:'16px'}} className='p-5 bg-dark w-30'>
                 <form onSubmit={handleRegister}>
                     <div className='mb-3'>
-                        <label htmlFor='email'>Email</label>
-                        <input type='email' placeholder='Ingrese su email' className='form-control' ref={emailInput}></input>
+                        <Input type="email" variant="bordered" label="Email" ref={emailInput} />
                     </div>
                     <div className='mb-3'>
-                        <label htmlFor='password'>Password</label>
-                        <input type='password' placeholder='Ingrese su contraseña' className='form-control' ref={passwordInput}></input>
+                        <Input type="password" variant="bordered" label="Password" ref={passwordInput} />
                     </div>
-                    <button type='submit' className='btn btn-success'>
-                        Register
-                    </button>
-                    {/* Utilizar Link de React Router en lugar de <a> */}
-                    <Link to='/login' className='btn btn-primary mx-2'>
-                        Go to login
-                    </Link>
+                    <div style={{display:'flex', gap:'8px'}}>
+                        <Button type='submit' color="success">Register</Button>
+                        <Link to='/login'>
+                            <Button color="default">Go to login</Button>
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>
