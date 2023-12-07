@@ -6,7 +6,8 @@ import { getMovieAdapter } from '../adapters/getMovieAdapter';
 import { getSeriesAdapter } from '../adapters/getSeriesAdapter';
 import { TMDB_PATHS } from '../remote/TMDB_API';
 import { List } from './List/List';
-import { Slider } from './Slider/Slider';
+import { AppSwiper } from './app_swiper/app_swiper';
+import { AppSwiperSlide } from './app_swiper/components/app_swiper_slide';
 
 const Home = () => {
     const { list, isLoading, error } = useMultifetch([
@@ -54,10 +55,9 @@ const Home = () => {
                     <List 
                         list={list}
                         renderList={(carousel, index) => (
-                            <Slider 
-                                key={`${carousel.name}_${index}`}
-                                carousel={carousel}
-                            />
+                            <AppSwiper key={`${carousel.name}_${index}`} carouselName={carousel.name} >
+                                <AppSwiperSlide carouselResults={carousel.results}></AppSwiperSlide>
+                            </AppSwiper>
                         )}
                     />
                 </>)}
