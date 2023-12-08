@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.jsx';
+import { useAuth } from '../../contexts/AuthContext.jsx';
 import {Button, Link as linkNextUI, Input} from "@nextui-org/react";
+import { inputStyles } from './inputStyles.js';
 
 function Login() {
     const emailInput = useRef(null);
@@ -67,23 +67,17 @@ function Login() {
     }
 
     return (
-        <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
-            <div style={{borderRadius:'16px'}} className='p-3 bg-dark w-30s'>
-                <form >
-                    <div className='mb-3'>
-                        <Input type="email" variant="bordered" label="Email" ref={emailInput} />
-                    </div>
-                    <div className='mb-3'>
-                        <Input type="password" variant="bordered" label="Password" ref={passwordInput} />
-                    </div>
-                    <div style={{display:'flex', gap:'8px'}}>
-                        <Button onClick={handleSubmit} color="success">Login</Button>
-                        <Link to='/register'>
-                            <Button color="default">Go to Register</Button>
-                        </Link>
-                    </div>
-                </form>
-            </div>
+        <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='bgImage flex h-screen justify-center items-center'>
+        <img src="/Netflix_2015_logo.svg.png" alt="logo" className='absolute w-44 top-8 left-16'/>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-4 p-5 bg-black/80 rounded z-10'>
+            <legend className='font-bold text-3xl'>Inicia sesión</legend>
+            <Input type="email" label="Email" ref={emailInput} classNames={inputStyles}/>
+            <Input type="password" label="Password" ref={passwordInput} classNames={inputStyles}/>
+            <Button type='submit' color="danger">Iniciar sesión</Button>
+            <p>¿Primera vez en nuestra app?
+                <Link to='/register' className='text-blue-400 hover:text-sky-600'> Registrate ahora.</Link>
+            </p>
+        </form>
         </div>
     );
 }

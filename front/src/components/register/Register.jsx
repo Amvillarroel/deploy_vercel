@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, Input } from '@nextui-org/react';
+import { inputStyles } from './inputStyles.js'
 
 function Register() {
     const emailInput = useRef(null);
@@ -35,23 +36,17 @@ function Register() {
     }
 
     return (
-        <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='d-flex vh-100 justify-content-center align-items-center bg-dark'>
-            <div style={{borderRadius:'16px'}} className='p-5 bg-dark w-30'>
-                <form onSubmit={handleRegister}>
-                    <div className='mb-3'>
-                        <Input type="email" variant="bordered" label="Email" ref={emailInput} />
-                    </div>
-                    <div className='mb-3'>
-                        <Input type="password" variant="bordered" label="Password" ref={passwordInput} />
-                    </div>
-                    <div style={{display:'flex', gap:'8px'}}>
-                        <Button type='submit' color="success">Register</Button>
-                        <Link to='/login'>
-                            <Button color="default">Go to login</Button>
-                        </Link>
-                    </div>
-                </form>
-            </div>
+        <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='bgImage flex h-screen justify-center items-center'>
+            <img src="/Netflix_2015_logo.svg.png" alt="logo" className='absolute w-44 top-8 left-16'/>
+            <form onSubmit={handleRegister} className='flex flex-col gap-4 p-5 bg-black/80 rounded z-10'>
+                <legend className='font-bold text-3xl'>Registrarse</legend>
+                <Input type="email" label="Email" ref={emailInput} classNames={inputStyles}/>
+                <Input type="password" label="Password" ref={passwordInput} classNames={inputStyles}/>
+                <Button type='submit' color="danger">Register</Button>
+                <p>¿Ya estas registrado?
+                    <Link to='/login' className='text-blue-400 hover:text-sky-600'> Ingresa acá.</Link>
+                </p>
+            </form>
         </div>
     );
 }
