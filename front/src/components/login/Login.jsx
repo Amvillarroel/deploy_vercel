@@ -55,7 +55,9 @@ function Login() {
             .then((res) => {
                 if (res.data.token) {
                     const token = res.data.token;
+                    const urlAvatar = res.data.userUrl;
                     localStorage.setItem('token', token);
+                    localStorage.setItem('url_avatar', urlAvatar);
                     login();
                     navigate('/home');
                 }

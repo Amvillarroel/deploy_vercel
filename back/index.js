@@ -21,6 +21,7 @@ mongoose.connect(process.env.URL_DB, {useNewUrlParser: true})
 const usersSchema = {
     usuario: {type: String, unique: true},
     clave: String,
+    url_avatar: String,
 }
 
 //se crea el modelo de la BD
@@ -76,7 +77,9 @@ app.get('/login', (req, res) => {
     .then((users) => {
         if (users.length > 0) {
             const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '30m' });
-            res.status(200).json({ token });
+            const userUrl = users[0].url_avatar
+            
+            res.status(200).json({ token, userUrl });
         } else {
             res.status(401).json({ message: 'Credenciales incorrectas' });
         }
