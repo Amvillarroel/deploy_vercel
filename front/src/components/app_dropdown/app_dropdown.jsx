@@ -9,7 +9,7 @@ const AppDropdown = ({logOut}) => {
             <DropdownMenu aria-label="User Actions" variant="flat" >
                 <DropdownItem textValue="Texto del ítem" key="profile" className="h-14 gap-2">
                     <p className="font-bold">Hi...</p>
-                    <p className="font-bold">user@email.com</p>
+                    <p className="font-bold">{localStorage.getItem('email')}</p>
                 </DropdownItem>
                 <DropdownItem textValue="Texto del ítem" key="logout" color="danger">
                     <p onClick={logOut}>Log Out</p>
