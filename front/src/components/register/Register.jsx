@@ -3,11 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, Input } from '@nextui-org/react';
-import { inputStyles } from './inputStyles.js'
+import { inputStyles } from './inputStyles.js';
+import { AppRadioGruop } from './app_radio_group/app_radio_gruop.jsx';
 
 function Register() {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
+    const avatarInput = useRef(null);
     const navigate = useNavigate();
 
     // Enviar los datos al back para registrar el nuevo usuario en la BD
@@ -37,11 +39,12 @@ function Register() {
 
     return (
         <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='bgImage flex h-screen justify-center items-center'>
-            <img src="/Netflix_2015_logo.svg.png" alt="logo" className='absolute w-44 top-8 left-16'/>
+            <img src="/Netflix_2015_logo.svg.png" alt="logo" className='hidden sm:block absolute w-44 top-8 left-16'/>
             <form onSubmit={handleRegister} className='flex flex-col gap-4 p-5 bg-black/80 rounded z-10'>
                 <legend className='font-bold text-3xl'>Registrarse</legend>
-                <Input type="email" label="Email" ref={emailInput} classNames={inputStyles}/>
-                <Input type="password" label="Password" ref={passwordInput} classNames={inputStyles}/>
+                <Input type="email" autoComplete='user-name' label="Email" ref={emailInput} classNames={inputStyles}/>
+                <Input type="password" autoComplete='current-password' label="Password" ref={passwordInput} classNames={inputStyles}/>
+                <AppRadioGruop avatarInput={avatarInput}/>
                 <Button type='submit' color="danger">Register</Button>
                 <p>¿Ya estas registrado?
                     <Link to='/login' className='text-blue-400 hover:text-sky-600'> Ingresa acá.</Link>

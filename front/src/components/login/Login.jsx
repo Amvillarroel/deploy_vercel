@@ -14,9 +14,8 @@ function Login() {
     useEffect(() => {
         // Mantener sesión iniciada si hay un token en el local storage
         const localStorageToken = localStorage.getItem('token');
-        if (!localStorageToken) {
-            console.log('No hay token en el local storage');
-        } else {
+        if (!localStorageToken) return
+        else {
             axios
                 .post(`${import.meta.env.VITE_BACK}/islogged`, { localStorageToken })
                 .then((res) => {
@@ -31,7 +30,6 @@ function Login() {
                     } else {
                         console.log('Token no válido');
                     }
-
                     localStorage.clear();
                     logout();
                     navigate('/');
@@ -44,7 +42,6 @@ function Login() {
         e.preventDefault();
         const email = emailInput.current.value;
         const password = passwordInput.current.value;
-
         axios
             .get(`${import.meta.env.VITE_BACK}/login`, {
                 params: {
@@ -65,18 +62,17 @@ function Login() {
                 }
             })
             .catch((err) => console.log('Error en usuario y/o contraseña desde el front'));
-
         emailInput.current.value = '';
         passwordInput.current.value = '';
     }
 
     return (
         <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='bgImage flex h-screen justify-center items-center'>
-        <img src="/Netflix_2015_logo.svg.png" alt="logo" className='absolute w-44 top-8 left-16'/>
+        <img src="/Netflix_2015_logo.svg.png" alt="logo" className='hidden sm:block absolute w-44 top-8 left-16'/>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4 p-5 bg-black/80 rounded z-10'>
             <legend className='font-bold text-3xl'>Inicia sesión</legend>
-            <Input type="email" label="Email" ref={emailInput} classNames={inputStyles}/>
-            <Input type="password" label="Password" ref={passwordInput} classNames={inputStyles}/>
+            <Input type="email" autoComplete='user-name' label="Email" ref={emailInput} classNames={inputStyles}/>
+            <Input type="password" autoComplete='current-password' label="Password" ref={passwordInput} classNames={inputStyles}/>
             <Button type='submit' color="danger">Iniciar sesión</Button>
             <p>¿Primera vez en nuestra app?
                 <Link to='/register' className='text-blue-400 hover:text-sky-600'> Registrate ahora.</Link>
