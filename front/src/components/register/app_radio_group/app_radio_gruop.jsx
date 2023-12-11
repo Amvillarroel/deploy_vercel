@@ -3,7 +3,10 @@ import './inputstye.css'
 
 const avatarImages = ['_bird', '_cat', '_dog', '_react', '_vite'];
 
-const AppRadioGruop = ({avatarInput}) => {
+const AppRadioGruop = ({avatarInput, onAvatarSeleccionado = (data) => {}}) => {
+    const handleSeleccionAvatar = (e) => {
+        onAvatarSeleccionado(e.target.value);
+    }
     return (
         <RadioGroup
             ref={avatarInput}
@@ -23,6 +26,7 @@ const AppRadioGruop = ({avatarInput}) => {
                         name="avatar"
                         value={avatar}
                         className="hidden"
+                        onChange={(e) => handleSeleccionAvatar(e)}
                     />
                     <Image
                         width={32}

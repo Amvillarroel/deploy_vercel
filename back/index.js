@@ -29,10 +29,10 @@ const usersModel = mongoose.model("users", usersSchema)
 
 //Crear un usuario y contraseña
 app.get('/register', async (req, res) => {
-    const { email, password } = req.query;
-    if(email!="" || password != ""){
+    const { email, password, avatar } = req.query;
+    if(email!="" || password != "" || avatar != ""){
     try {
-        const newUser = new usersModel({ usuario: email, clave: password });
+        const newUser = new usersModel({ usuario: email, clave: password, url_avatar: avatar});
         await newUser.save();
         res.status(200).json({ success: true });
     } catch (error) {
@@ -77,9 +77,9 @@ app.get('/login', (req, res) => {
     .then((users) => {
         if (users.length > 0) {
             const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '30m' });
-            const userUrl = users[0].url_avatar;
+            const userAvatar = users[0].url_avatar;
             const userEmail = users[0].usuario;
-            res.status(200).json({ token, userUrl, userEmail });
+            res.status(200).json({ token, userAvatar, userEmail });
         } else {
             res.status(401).json({ message: 'Credenciales incorrectas' });
         }

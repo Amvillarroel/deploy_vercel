@@ -4,7 +4,7 @@ const AppDropdown = ({logOut}) => {
     return (     
         <Dropdown placement="bottom-start" className="bg-dark">
             <DropdownTrigger>
-                <Avatar isBordered src={`/avatars${localStorage.getItem('url_avatar')}`} imgProps={{className:'opacity-100 h-full'}}/>
+                <Avatar isBordered src={`/avatars/avatar${localStorage.getItem('url_avatar')}.png`} imgProps={{className:'opacity-100 h-full'}}/>
             </DropdownTrigger>
             <DropdownMenu aria-label="User Actions" variant="flat">
                 <DropdownItem textValue="Texto del ítem" key="profile" className="h-14 gap-2">

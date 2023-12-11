@@ -5,12 +5,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button, Input } from '@nextui-org/react';
 import { inputStyles } from './inputStyles.js';
 import { AppRadioGruop } from './app_radio_group/app_radio_gruop.jsx';
+import { useState } from 'react';
 
 function Register() {
     const emailInput = useRef(null);
     const passwordInput = useRef(null);
-    const avatarInput = useRef(null);
     const navigate = useNavigate();
+    const [userAvatar, setUserAvatar] = useState('_bird');
 
     // Enviar los datos al back para registrar el nuevo usuario en la BD
     function handleRegister(e) {
@@ -23,6 +24,7 @@ function Register() {
                 params: {
                     email: email,
                     password: password,
+                    avatar: userAvatar
                 },
             })
             .then((res) => {
@@ -44,7 +46,7 @@ function Register() {
                 <legend className='font-bold text-3xl'>Registrarse</legend>
                 <Input type="email" autoComplete='user-name' label="Email" ref={emailInput} classNames={inputStyles}/>
                 <Input type="password" autoComplete='current-password' label="Password" ref={passwordInput} classNames={inputStyles}/>
-                <AppRadioGruop avatarInput={avatarInput}/>
+                <AppRadioGruop onAvatarSeleccionado={(data) => setUserAvatar(data)}/>
                 <Button type='submit' color="danger">Register</Button>
                 <p>¿Ya estas registrado?
                     <Link to='/login' className='text-blue-400 hover:text-sky-600'> Ingresa acá.</Link>
