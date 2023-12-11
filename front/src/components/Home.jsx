@@ -7,7 +7,7 @@ import { getSeriesAdapter } from '../adapters/getSeriesAdapter';
 import { TMDB_PATHS } from '../remote/TMDB_API';
 import { List } from './List/List';
 import { AppSwiper } from './app_swiper/app_swiper';
-import { AppSwiperSlide } from './app_swiper/components/app_swiper_slide';
+import { SwiperSlide } from './app_swiper/swiper_slide/swiper_slide';
 
 const Home = () => {
     const { list, isLoading, error } = useMultifetch([
@@ -48,19 +48,19 @@ const Home = () => {
     ]);
     return (
         <>
-                {error ?? (<h1>{error}</h1>)}
-                {isLoading ? 
-                (<h1>Cargando....</h1>) :
-                (<>
-                    <List 
-                        list={list}
-                        renderList={(carousel, index) => (
-                            <AppSwiper key={`${carousel.name}_${index}`} carouselName={carousel.name} >
-                                <AppSwiperSlide carouselResults={carousel.results}></AppSwiperSlide>
-                            </AppSwiper>
-                        )}
-                    />
-                </>)}
+            {error ?? (<h1>{error}</h1>)}
+            {isLoading ? 
+            (<h1>Cargando....</h1>) :
+            (<>
+                <List 
+                    list={list}
+                    renderList={(carousel, index) => (
+                        <AppSwiper key={`${carousel.name}_${index}`} carouselName={carousel.name} >
+                            <SwiperSlide carouselResults={carousel.results}></SwiperSlide>
+                        </AppSwiper>
+                    )}
+                />
+            </>)}
         </>
     );
 };
