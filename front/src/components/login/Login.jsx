@@ -58,9 +58,8 @@ function Login() {
                     const userMail = res.data.userEmail;
                     const urlAvatar = res.data.userUrl;
                     localStorage.setItem('token', token);
-                    localStorage.setItem('user_mail', userMail);
+                    localStorage.setItem('email', userMail);
                     localStorage.setItem('url_avatar', urlAvatar);
-                    localStorage.setItem('email', email);
                     login();
                     navigate('/home');
                 }
