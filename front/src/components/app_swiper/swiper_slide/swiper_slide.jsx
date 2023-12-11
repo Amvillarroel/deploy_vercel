@@ -1,7 +1,7 @@
 import React from 'react'
 import { Cards } from '../../Cards/Cards'
 
-const AppSwiperSlide = ({carouselResults}) => {
+const SwiperSlide = ({carouselResults}) => {
     return (
         <>
             {carouselResults?.map((card, index) => (
@@ -13,4 +13,4 @@ const AppSwiperSlide = ({carouselResults}) => {
     )
 }
 
-export { AppSwiperSlide }
+export { SwiperSlide }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext.jsx';
-import {Button, Link as linkNextUI, Input} from "@nextui-org/react";
+import {Button, Input} from "@nextui-org/react";
 import { inputStyles } from './inputStyles.js';
 
 function Login() {
@@ -55,8 +55,10 @@ function Login() {
             .then((res) => {
                 if (res.data.token) {
                     const token = res.data.token;
+                    const userMail = res.data.userEmail;
                     const urlAvatar = res.data.userUrl;
                     localStorage.setItem('token', token);
+                    localStorage.setItem('user_mail', userMail);
                     localStorage.setItem('url_avatar', urlAvatar);
                     localStorage.setItem('email', email);
                     login();
