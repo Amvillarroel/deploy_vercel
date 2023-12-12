@@ -10,7 +10,7 @@ const TMDB_API = axios.create({
 });
 
 const TMDB_PATHS = {
-    images_base_url: 'https://image.tmdb.org/t/p/w500',
+    images_base_url: 'https://image.tmdb.org/t/p/original',
     movies: {
         genres: '/genre/movie/list',
         now_playing: '/movie/now_playing',

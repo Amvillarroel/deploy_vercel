@@ -68,7 +68,7 @@ function Login() {
 
     return (
         <div style={{backgroundImage:'url("/Netflix-Background.jpg")'}} className='bgImage flex h-screen justify-center items-center'>
-        <img src="/Netflix_2015_logo.svg.png" alt="logo" className='hidden sm:block absolute w-44 top-8 left-16'/>
+        <img src="/TatataFlix_logo.png" alt="logo" className='hidden sm:block absolute w-44 top-8 left-16'/>
         <form onSubmit={handleSubmit} className='flex flex-col gap-4 p-5 bg-black/80 rounded z-10'>
             <legend className='font-bold text-3xl'>Inicia sesión</legend>
             <Input type="email" autoComplete='user-name' label="Email" ref={emailInput} classNames={inputStyles}/>

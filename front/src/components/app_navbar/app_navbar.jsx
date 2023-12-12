@@ -18,7 +18,7 @@ const AppNavbar = ({children}) => {
 
     return (
         <>
-            <Navbar isBordered className='bg-dark py-8 border-none' classNames={{
+            <Navbar isBordered className='bg-dark py-3 border-none' classNames={{
                 wrapper: [
                     "px-8",
                     "max-w-full"
@@ -26,7 +26,7 @@ const AppNavbar = ({children}) => {
             }}>
                 <NavbarContent justify="start" className='max-w-md'>
                     <NavbarBrand>
-                        <img src="/Netflix_2015_logo.svg.png" alt="logo" />
+                        <img src="/TatataFlix_logo.png" alt="logo" />
                     </NavbarBrand>
                     <NavbarContent className="hidden sm:flex gap-3">
                         <NavbarItem>

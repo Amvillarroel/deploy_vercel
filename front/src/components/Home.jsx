@@ -8,8 +8,19 @@ import { TMDB_PATHS } from '../remote/TMDB_API';
 import { List } from './List/List';
 import { AppSwiper } from './app_swiper/app_swiper';
 import { SwiperSlide } from './app_swiper/swiper_slide/swiper_slide';
+import { AppBanner } from './app_banner/app_banner';
 
 const Home = () => {
+    // Peticion para el banner
+    const {list: bannerData, isLoading: bannerLoading, error: bannerError} = useMultifetch([
+        {
+            name: 'Proximas Peliculas',
+            request: getMovies,
+            adapter: getMovieAdapter,
+            endpoint: TMDB_PATHS.movies.upcoming
+        }
+    ])
+    // Peticiones para mostrar carruseles
     const { list, isLoading, error } = useMultifetch([
         {
             name: 'Peliculas Populares',
@@ -48,10 +59,11 @@ const Home = () => {
     ]);
     return (
         <>
-            {error ?? (<h1>{error}</h1>)}
-            {isLoading ? 
+            {(error || bannerError) ?? (<h1>{error}</h1>)}
+            {(isLoading || bannerLoading) ? 
             (<h1>Cargando....</h1>) :
             (<>
+                <AppBanner bannerData={bannerData}/>
                 <List 
                     list={list}
                     renderList={(carousel, index) => (
