@@ -52,10 +52,9 @@ function Login() {
             .then((res) => {
                 if (res.data.token) {
                     const token = res.data.token;
-                    const userMail = res.data.userEmail;
                     const userAvatar = res.data.userAvatar;
                     localStorage.setItem('token', token);
-                    localStorage.setItem('email', userMail);
+                    localStorage.setItem('email', email);
                     localStorage.setItem('url_avatar', userAvatar);
                     login();
                     navigate('/home');

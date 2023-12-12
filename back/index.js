@@ -78,8 +78,7 @@ app.get('/login', (req, res) => {
         if (users.length > 0) {
             const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '30m' });
             const userAvatar = users[0].url_avatar;
-            const userEmail = users[0].usuario;
-            res.status(200).json({ token, userAvatar, userEmail });
+            res.status(200).json({ token, userAvatar });
         } else {
             res.status(401).json({ message: 'Credenciales incorrectas' });
         }
